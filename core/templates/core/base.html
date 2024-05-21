@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+
+    <title>ChipFix Technologies</title>
+  </head>
+  <body class="overflow-x-hidden font-body bg-puerto_rico-600">
+    <nav class="fixed top-0 z-10 flex items-center justify-between w-full h-12 text-white bg-puerto_rico-950">
+      <a href="{% url 'products' %}" class="ml-10 text-lg font-semibold">ChipFix Technologies</a>
+      <ul class="relative flex items-center justify-around w-3/6 list-none">
+        <li class=""><a href="{% url 'products' %}">Products</a></li>
+        {% if user.is_authenticated %}
+        <li class=""><a  href="{% url 'createinvoice' %}" >Create Invoice</a></li>
+        <li class=""><a  href="{% url 'dashboard' %}" >Dashboard</a></li>
+        {% endif%}
+        {% if user.is_authenticated %}
+        <li class="text-secondary-100"><a  href="{% url 'logout'%}">Logout</a></li>
+        {% else %}
+        <li class=""><a  href="{% url 'login'%}">Login</a></li> 
+        {% endif%}
+      </ul>
+    </nav>
+    {%if messages%}
+      {% for message in messages %}
+          {% if message.tags == 'success' %}
+              <div class="relative grid w-full top-14 place-items-center">
+                <div class="flex items-center p-2 leading-none text-indigo-100 bg-green-400 rounded-full" role="alert">
+                  <span class="flex px-2 py-1 mr-3 text-xs font-bold uppercase rounded-full bg-secondary-700">{{message.tags}}</span>
+                  <span class="flex-auto mr-2 font-semibold text-left text-puerto_rico-100">{{message}}</span>
+                </div>
+              </div>      
+          {% elif message.tags == 'info' %}
+            <div class="relative grid w-full top-14 place-items-center">
+              <div class="flex items-center p-2 leading-none text-indigo-100 bg-gray-300 rounded-full" role="alert">
+                <span class="flex px-2 py-1 mr-3 text-xs font-bold uppercase rounded-full bg-puerto_rico-950">{{message.tags}}</span>
+                <span class="flex-auto mr-2 font-semibold text-left text-puerto_rico-100">{{message}}</span>
+              </div>
+            </div>
+          {% endif %}
+      {% endfor %}
+    {% endif %}
+    <main class="relative top-12">
+        {% block content %}
+        <!-- for childs -->
+        {% endblock content %}
+    </main>
+  </body>
+  <script>
+    const showChange =(e)=>{
+      let span = document.querySelector('.currSpan')
+      let alert = document.querySelector('.alert')
+      if (span){
+        span.innerHTML = `${e.target.value}`
+      }
+      if(alert) alert.innerText = ""
+      
+      if ( e.target.value<=0){
+        alert.innerText = "Invalid value."
+      }
+    }
+    let sn = document.querySelectorAll('.sn')
+    if (sn){
+      sn.forEach((elem,id)=>elem.innerHTML=`${id+1}`)
+    }
+  </script>
+</html>

@@ -1,0 +1,22 @@
+Service URI
+mysql://CLICK_TO:REVEAL_PASSWORD@mysql-148ad018-mwangibrian2017-c3c3.h.aivencloud.com:10893/defaultdb?ssl-mode=REQUIRED
+
+Database name
+defaultdb
+
+Host
+mysql-148ad018-mwangibrian2017-c3c3.h.aivencloud.com
+
+Port
+10893
+
+User
+avnadmin
+
+Password
+AVNS_BQ8KI82TBgGJAdKD-NW
+AVNS_BQ8KI82TBgGJAdKD-NW
+
+
+SSL mode
+REQUIRED
