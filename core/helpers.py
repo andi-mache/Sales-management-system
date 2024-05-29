@@ -1,15 +1,19 @@
-import os, string, random
-from SalesManagementSystem.settings import MEDIA_ROOT
-from django.db import connection  # type: ignore
-from PIL import Image
+import os
+import random
+import string
 from io import BytesIO
+
+from PIL import Image
+from django.db import connection  # type: ignore
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 
+from SalesManagementSystem.settings import MEDIA_ROOT
+
 
 def render_to_pdf(template_src, context_dict={}):
-    "renders html_template to pdf as HttpResponse given template_src and context_dict"
+    """renders html_template to pdf as HttpResponse given template_src and context_dict"""
     template = get_template(template_src)
     html = template.render(context_dict)
     result = BytesIO()
@@ -20,7 +24,7 @@ def render_to_pdf(template_src, context_dict={}):
 
 
 def dictfetchall(cursor):
-    "Return all rows from a cursor as a list of dicts"
+    """Return all rows from a cursor as a list of dicts"""
     columns = [col[0] for col in cursor.description]
     return [
         dict(zip(columns, row))
