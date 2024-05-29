@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-^_qz6dy2c_a(48_f72cnsiw%!a6ne##o7s3!7z70a*n^l&=bii
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'andiandi.pythonanywhere.com'
+    '*'
 ]
 
 
@@ -86,10 +86,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'defaultdb',
-        'USER': 'avnadmin',
+        'USER': 'root',
         'PASSWORD': 'AVNS_BQ8KI82TBgGJAdKD-NW',
-        'HOST': 'mysql-148ad018-mwangibrian2017-c3c3.h.aivencloud.com',
-        'PORT': '10893',
+        'HOST': '127.0.0.1',
     }
 }
 
